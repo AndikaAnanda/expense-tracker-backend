@@ -21,7 +21,7 @@ WORKDIR /app
 RUN apk add --no-cache tzdata
 
 COPY --from=builder /app/expense-tracker-backend .
-COPY --from=builder /app/.env .
+# COPY --from=builder /app/.env .
 
 EXPOSE 8081
 
