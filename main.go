@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 
 	"expense-tracker-backend/config"
 	"expense-tracker-backend/models"
@@ -23,8 +24,8 @@ func main() {
 		log.Println("Migration success")
 	}
 
-	app := routes.SetupRoutes()
-
+	app := gin.Default()
+		
 	// CORS setup
 	app.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:5173", "https://your-frontend-domain.vercel.app"},
@@ -34,6 +35,8 @@ func main() {
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
 	}))
+
+	routes.SetupRoutes()
 	
 	port := os.Getenv("APP_PORT")
 	if port == "" {
