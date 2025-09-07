@@ -24,7 +24,7 @@ type UpdateTransactionDTO struct {
 // GET /transactions
 func GetTransactions(c *gin.Context) {
 	var transactions []models.Transaction
-	result := config.DB.Order("created_at_DESC").Find(&transactions)
+	result := config.DB.Order("created_at DESC").Find(&transactions)
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
 		return
