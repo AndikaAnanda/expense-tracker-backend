@@ -33,11 +33,12 @@ func ConnectDB() {
 
 	dsn := os.Getenv("DATABASE_URL")
 
+	// gorm configuration if it's not use transaction pooler
+	// db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	db, err := gorm.Open(postgres.New(postgres.Config{
 		DSN:                  dsn,
 		PreferSimpleProtocol: true,
 	}), &gorm.Config{})
-	
 	if err != nil {
 		log.Fatalf("Failed to connect database: %v", err)
 	}
