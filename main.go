@@ -15,7 +15,9 @@ func main() {
 
 	// Schema migration
 	if err := config.DB.AutoMigrate(&models.Transaction{}); err != nil {
-		log.Fatalf("Migration error: %v", err)
+		log.Printf("Migration warning: %v", err) // jangan Fatalf, supaya app tetap jalan
+	} else {
+		log.Println("Migration success")
 	}
 
 	app := routes.SetupRoutes()
