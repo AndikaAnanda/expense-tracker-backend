@@ -36,7 +36,7 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	routes.SetupRoutes()
+	routes.SetupRoutes(app)
 	
 	port := os.Getenv("APP_PORT")
 	if port == "" {
